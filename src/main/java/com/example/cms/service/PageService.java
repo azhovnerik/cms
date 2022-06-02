@@ -37,10 +37,14 @@ public class PageService {
                 .filter(page -> page.getPublishedAt().compareTo(new Date()) < 0 || showAllPage)
                 .sorted(Comparator.comparingInt(Page::getPriority))
                 .collect(Collectors.toList());
-        showAllPage = !showAllPage;
+
         return list;
 
 
+    }
+
+    public void showHidePages(){
+        showAllPage = !showAllPage;
     }
 
     public Optional<Page> findPageBySlug(String slug) {

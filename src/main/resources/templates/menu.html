@@ -24,14 +24,14 @@
     <h1>Pages:</h1>
     <div th:each="el : ${pageList}" class="alert alert-info mt-2">
       <!--  <h3 th:text="${el.menuLabel}"/> -->
-      <a th:href="@{'/page/'+${el.slug}}" th:text="${el.menuLabel}"></a>
+      <a th:href="@{'/'+${el.slug}}" th:text="${el.menuLabel}"></a>
       <!--<a th:href="@{'/page/'+el.slug}" th:text="" <li th:utext="${el.menuLabel}">..</li>  -->
 
     </div>
     <br>
     <br>
-    <a th:href="@{/}" class="btn">Show/hide unpublished pages</a>
-    <a th:href="@{/page/add}" class="btn">Add new page</a>
+    <a th:href="@{/showHidePages}" class="btn">Show/hide unpublished pages</a>
+    <a th:href="@{/add}" class="btn">Add new page</a>
 </div>
 
 

@@ -24,8 +24,8 @@
     <h1 th:text="${el.h1}"></h1>
     <span th:remove="tag" th:utext="${el.content}"></span>
 <br><br>
-<a th:href="@{'/page/'+${el.slug}+'/edit'}" class="btn">Edit page</a>
-<a th:href="@{'/page/'+${el.slug}+'/delete'}" class="btn">Delete page</a>
+<a th:href="@{'/'+${el.slug}+'/edit'}" class="btn">Edit page</a>
+<a th:href="@{'/'+${el.slug}+'/delete'}" class="btn">Delete page</a>
 
 <!--</div>   -->
 

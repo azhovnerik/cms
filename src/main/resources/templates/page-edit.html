@@ -11,7 +11,7 @@
 
 <div class="container mt-5 mb-5">
     <h1>Edit page</h1>
-    <form th:action= "@{'/page/'+${el.slug}+'/save'}" method="post">
+    <form th:action= "@{'/'+${el.slug}+'/save'}" method="post">
         <input type="text" th:value="${el.title} "name="title" placeholder="title" class="form-control"><br>
         <textarea th:text="${el.description}" name="description"  placeholder="description" class="form-control"></textarea><br>
         <input type="text" th:value="${el.slug}" name="slug" placeholder="slug" class="form-control"><br>

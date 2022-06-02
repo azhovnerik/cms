@@ -32,7 +32,7 @@ public class MainController {
     @GetMapping("/")
     public String home(Model model, HttpServletRequest request) {
         //1. get list of existing pages
-        System.out.println(pageService.isShowAllPage());
+       // System.out.println(pageService.isShowAllPage());
         List<Page> pageList = pageService.getPages();
         System.out.println(pageList);
         model.addAttribute("pageList", pageList);
@@ -40,13 +40,19 @@ public class MainController {
         return "menu";
     }
 
-    @GetMapping("/page/add")
+    @GetMapping("/add")
     public String addPage(Model model, HttpServletRequest request) {
 
         return "page-add";
     }
 
-    @GetMapping("/page/{slug}")
+    @GetMapping("/showHidePages")
+    public String showHidePages(Model model, HttpServletRequest request) {
+        pageService.showHidePages();
+        return "redirect:/";
+    }
+
+    @GetMapping("/{slug}")
     public String addPage(@PathVariable(value = "slug") String slug, Model model) {
         Optional<Page> page = pageService.findPageBySlug(slug);
         if (page.isPresent()) {
@@ -57,7 +63,7 @@ public class MainController {
         return "page-show";
     }
 
-    @PostMapping("/page/add")
+    @PostMapping("/add")
     public String newPageAdd(@RequestParam String title, @RequestParam String description, @RequestParam String slug, @RequestParam String menuLabel, @RequestParam String h1, @RequestParam String content, @RequestParam String publishedAt, @RequestParam Integer priority, Model model) {
         Page page = new Page(title, description, slug, menuLabel, h1, content, pageService.stringToTimeStamp(publishedAt), priority);
         try {
@@ -69,7 +75,7 @@ public class MainController {
         return "redirect:/";
     }
 
-    @PostMapping("/page/{slug}/save")
+    @PostMapping("/{slug}/save")
     public String pageAdd(@RequestParam Long id, @RequestParam String title, @RequestParam String description, @RequestParam String slug, @RequestParam String menuLabel, @RequestParam String h1, @RequestParam String content, @RequestParam String publishedAt, @RequestParam Integer priority, Model model) {
         Optional<Page> pageOptional = pageService.findPageById(id);
         if (pageOptional.isPresent()) {
@@ -95,7 +101,7 @@ public class MainController {
 
     }
 
-    @GetMapping("/page/{slug}/edit")
+    @GetMapping("/{slug}/edit")
     public String pageEdit(@PathVariable(value = "slug") String slug, Model model) {
         Optional<Page> page = pageService.findPageBySlug(slug);
         if (page.isPresent()) {
@@ -109,7 +115,7 @@ public class MainController {
         return "page-edit";
     }
 
-    @GetMapping("/page/{slug}/delete")
+    @GetMapping("/{slug}/delete")
     public String pageRemove(@PathVariable(value = "slug") String slug, Model model) {
         Optional<Page> pageOptional = pageService.findPageBySlug(slug);
         if (pageOptional.isPresent()) {
