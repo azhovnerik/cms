@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="${title}"></title>
+
+    <style>
+        .btn {
+            display: inline-block; /* Строчно-блочный элемент */
+            background: #8C959D; /* Серый цвет фона */
+            color: #fff; /* Белый цвет текста */
+            padding: 1rem 1.5rem; /* Поля вокруг текста */
+            text-decoration: none; /* Убираем подчёркивание */
+            border-radius: 3px; /* Скругляем уголки */
+        }
+    </style>
+
+ </head>
+
+<body class="text-center">
+
+<div class="container mt-5">
+    <h1>Pages:</h1>
+    <div th:each="el : ${pageList}" class="alert alert-info mt-2">
+      <!--  <h3 th:text="${el.menuLabel}"/> -->
+      <a th:href="@{'/page/'+${el.slug}}" th:text="${el.menuLabel}"></a>
+      <!--<a th:href="@{'/page/'+el.slug}" th:text="" <li th:utext="${el.menuLabel}">..</li>  -->
+
+    </div>
+    <br>
+    <br>
+    <a th:href="@{/}" class="btn">Show/hide unpublished pages</a>
+    <a th:href="@{/page/add}" class="btn">Add new page</a>
+</div>
+
+
+
+</body>
+
+
+
+</html>
